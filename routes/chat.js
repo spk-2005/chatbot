@@ -5,6 +5,25 @@ const manager = require('../services/nlpservice');
 const router = express.Router();
 
 
+
+const navigationLinks = {
+    farmer: {
+        dashboard: "https://krushikalpa.netlify.app/farmeraccount",
+        products: "https://krushikalpa.netlify.app/products",
+        wastage: "https://krushikalpa.netlify.app/wastage",
+        pesticides: "https://krushikalpa.netlify.app/fpesticides",
+        prices: "https://krushikalpa.netlify.app/fprices",
+        guidance: "https://krushikalpa.netlify.app/farminguidence"
+    },
+    consumer: {
+        dashboard: "https://krushikalpa.netlify.app/consumerdashboard",
+        products: "https://krushikalpa.netlify.app/cproducts",
+        wastage: "https://krushikalpa.netlify.app/wastage",
+        prices: "https://krushikalpa.netlify.app/cprices"
+    }
+};
+
+
 const conversationResponses = {
     'greeting.howareyou': {
         en: "I'm doing well, thank you! How can I help you today?",
@@ -130,8 +149,52 @@ router.post('/chat', async (req, res) => {
         let botResponse = '';
 
         const soilType = user.landDetails.soilType ? user.landDetails.soilType.toLowerCase() : null;
-
+        const userType = user.userType === 'farmer' ? 'farmer' : 'consumer';
         switch (response.intent) {
+
+            case 'farmer.dashboard':
+                botResponse = `Here is your dashboard  <a href="${navigationLinks[userType].dashboard}"  style={{textDecoration:'none'}} target="_blank">Dashboard</a>`;
+                break;
+
+            case 'farmer.products':
+                botResponse = `Check  products Now  <a href="${navigationLinks[userType].products}"  style={{textDecoration:'none'}} target="_blank">Products</a>`;
+                break;
+
+            case 'farmer.wastage':
+                botResponse = `Sell your farm waste here  <a href="${navigationLinks[userType].wastage}"  style={{textDecoration:'none'}} target="_blank">Sell Now</a>`;
+                break;
+
+            case 'farmer.pesticides':
+                botResponse = `Buy pesticides here: <a href="${navigationLinks[userType].pesticides}" style={{textDecoration:'none'}}  target="_blank">Pesticides</a>`;
+                break;
+
+            case 'farmer.prices':
+                botResponse = `Check the latest prices here: <a href="${navigationLinks[userType].prices}" style={{textDecoration:'none'}}  target="_blank">See Now</a>`;
+                break;
+
+            case 'farmer.guidance':
+                botResponse = `Get farming guidance here: (${navigationLinks[userType].guidance}" style={{textDecoration:'none'}}  target="_blank">Take Now</a>`;
+                break;
+
+            case 'consumer.dashboard':
+                botResponse = `Access your dashboard here: <a href="${navigationLinks[userType].dashboard}"  style={{textDecoration:'none'}} target="_blank">Dashboard</a>`;
+                break;
+
+            case 'consumer.products':
+                botResponse = `View available products here: <a href="${navigationLinks[userType].products}"  style={{textDecoration:'none'}} target="_blank">Buy Now</a>`;
+                break;
+
+            case 'consumer.prices':
+                botResponse = `Check the latest market prices here: <a href="${navigationLinks[userType].prices}" style={{textDecoration:'none'}}target="_blank">See Now</a>`;
+                break;
+
+            case 'consumer.wastage':
+                botResponse = `Sell your waste here: <a href="${navigationLinks[userType].wastage}"style={{textDecoration:'none'}} target="_blank">Sell Now</a>`;
+                break;
+
+
+
+
             case 'greeting.hello':
                 botResponse = language === 'te'
                     ? `హలో, ${user.name}! మీకు ఎలా సహాయం చేయగలను?`
@@ -421,9 +484,9 @@ case 'general.wellbeing':
             {
                 const names = {
                     en: [
-                        "I'm Chitti the robot, your agricultural assistant. I'm here to help you with farming-related queries.",
-                        "My name is Chitti the robot. I'm a virtual assistant specialized in agricultural information.",
-                        "I'm Chitti the robot, your digital farming companion. How can I assist you today?"
+                        "I'm Chittee. the robot . speed 1 tera hz . memory 1 zeta byte, your agricultural assistant. I'm here to help you with farming-related queries.",
+                        "My name is Chittee. the robot. speed 1 tera hz . memory 1 zeta byte I'm a virtual assistant specialized in agricultural information.",
+                        "I'm Chittee. the robot .speed 1 tera hz . memory 1 zeta byte, your digital farming companion. How can I assist you today?"
                     ],
                     te: [
                         "నేను కృషిమిత్ర, మీ వ్యవసాయ సహాయకుడిని. వ్యవసాయానికి సంబంధించిన ప్రశ్నలకు సహాయపడటానికి నేను ఇక్కడ ఉన్నాను.",

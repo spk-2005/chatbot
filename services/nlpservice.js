@@ -6,7 +6,7 @@ const manager = new NlpManager({ languages: ['en', 'te'] });
 
 
 
-// Name-related intents in English
+// Name-related intents
 manager.addDocument('en', 'What is your name?', 'query.chatname');
 manager.addDocument('en', 'Who are you?', 'query.chatname');
 manager.addDocument('en', 'What should I call you?', 'query.chatname');
@@ -14,7 +14,6 @@ manager.addDocument('en', 'Tell me your name', 'query.chatname');
 manager.addDocument('en', 'What\'s your name?', 'query.chatname');
 manager.addDocument('en', 'Can you tell me who you are?', 'query.chatname');
 
-// Name-related intents in Telugu
 manager.addDocument('te', 'మీ పేరు ఏమిటి?', 'query.chatname');
 manager.addDocument('te', 'మీరు ఎవరు?', 'query.chatname');
 manager.addDocument('te', 'నేను మిమ్మల్ని ఏమని పిలవాలి?', 'query.chatname');
@@ -250,6 +249,38 @@ manager.addDocument('te', 'ప్రపంచవ్యాప్తంగా జ�
 manager.addDocument('te', 'ప్రపంచవ్యాప్తంగా జైవిక వ్యవసాయంపై ట్రెండ్స్ గురించి చెప్పండి.', 'organic.farming.global_trends');
 manager.addDocument('te', 'ప్రపంచవ్యాప్తంగా జైవిక వ్యవసాయం ట్రెండ్స్ ఏమిటి?', 'organic.farming.global_trends');
 
+
+
+// 🔹 Krushi Kalpa Site Navigation - **Farmer**
+manager.addDocument('en', 'Where is my dashboard?', 'farmer.dashboard');
+manager.addDocument('en', 'How do I access my dashboard?', 'farmer.dashboard');
+manager.addDocument('te', 'నా డాష్‌బోర్డ్ ఎక్కడ ఉంది?', 'farmer.dashboard');
+
+manager.addDocument('en', 'Where can I see my products?', 'farmer.products');
+manager.addDocument('te', 'నా ఉత్పత్తులు ఎక్కడ చూడాలి?', 'farmer.products');
+
+manager.addDocument('en', 'How do I sell my farm waste?', 'farmer.wastage');
+manager.addDocument('te', 'నా వ్యవసాయ వ్యర్థాలను ఎలా అమ్మాలి?', 'farmer.wastage');
+
+manager.addDocument('en', 'Where can I buy pesticides?', 'farmer.pesticides');
+manager.addDocument('te', 'నేను పురుగుమందులు ఎక్కడ కొనుగోలు చేయగలను?', 'farmer.pesticides');
+
+manager.addDocument('en', 'How can I check the latest prices?', 'farmer.prices');
+manager.addDocument('te', 'తాజా ధరలు ఎలా చూడగలను?', 'farmer.prices');
+
+manager.addDocument('en', 'Where can I get farming guidance?', 'farmer.guidance');
+manager.addDocument('te', 'వ్యవసాయ మార్గదర్శకాన్ని ఎక్కడ పొందవచ్చు?', 'farmer.guidance');
+
+
+// 🔹 Krushi Kalpa Site Navigation - **Consumer**
+manager.addDocument('en', 'Where is my consumer dashboard?', 'consumer.dashboard');
+manager.addDocument('te', 'నా వినియోగదారు డాష్‌బోర్డ్ ఎక్కడ ఉంది?', 'consumer.dashboard');
+
+manager.addDocument('en', 'Where can I see consumer products?', 'consumer.products');
+manager.addDocument('te', 'నాకు అందుబాటులో ఉన్న ఉత్పత్తులు ఎక్కడ చూడగలను?', 'consumer.products');
+
+manager.addDocument('en', 'How do I check prices as a consumer?', 'consumer.prices');
+manager.addDocument('te', 'వినియోగదారుగా ధరలను ఎలా తనిఖీ చేయాలి?', 'consumer.prices');
 
 
 
