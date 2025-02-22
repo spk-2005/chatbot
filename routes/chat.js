@@ -151,6 +151,39 @@ router.post('/chat', async (req, res) => {
         const soilType = user.landDetails.soilType ? user.landDetails.soilType.toLowerCase() : null;
         const userType = user.userType === 'farmer' ? 'farmer' : 'consumer';
         switch (response.intent) {
+            case 'farmer.sell':
+                botResponse = language === 'te' 
+                    ? "మీ ఉత్పత్తులను జాబితా చేయడానికి నేను సహాయం చేస్తాను. దయచేసి మీరు ఏ రకమైన పంట మరియు ఎంత పరిమాణం ఉందో చెప్పండి."
+                    : "I'll help you list your products. Please tell me what type of produce you have and the quantity.";
+                break;
+
+            case 'farmer.quantity':
+                botResponse = language === 'te' 
+                    ? `మీరు ఖచ్చితమైన పరిమాణాన్ని మరియు ధరను నమోదు చేయగల మా ఉత్పత్తి జాబితా పేజీకి మిమ్మల్ని మళ్లిస్తాను. ఇక్కడ క్లిక్ చేయండి:<a href="${navigationLinks[userType].products}" target="_blank">Products</a>`
+                    : `I'll redirect you to our product listing page where you can enter the exact quantity and set your price. Click here: <a href="${navigationLinks[userType].products}" target="_blank">Products</a>`;
+                break;
+
+            case 'farmer.product.type':
+                botResponse = language === 'te' 
+                    ? "చాలా బాగుంది! దయచేసి మీ దగ్గర ఉన్న పరిమాణాన్ని తెలియజేయండి."
+                    : "Excellent! Please specify the quantity you have available.";
+                break;
+
+            case 'farmer.dashboard':
+                botResponse = `Here is your dashboard: <a href="${navigationLinks[userType].dashboard}" target="_blank">Dashboard</a>`;
+                break;
+
+            case 'farmer.products':
+                botResponse = `Check products now: <a href="${navigationLinks[userType].products}" target="_blank">Products</a>`;
+                break;
+
+            case 'farmer.soil.recommendation':
+                botResponse = soilType && soilCropRecommendations[soilType] 
+                    ? soilCropRecommendations[soilType][language]
+                    : (language === 'te' ? "మీ మట్టి రకం గుర్తించబడలేదు." : "Your soil type is not identified.");
+                break;
+
+
 
             case 'farmer.dashboard':
                 botResponse = `Here is your dashboard  <a href="${navigationLinks[userType].dashboard}"  style={{textDecoration:'none'}} target="_blank">Dashboard</a>`;

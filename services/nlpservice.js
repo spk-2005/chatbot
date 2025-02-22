@@ -4,6 +4,75 @@ const manager = new NlpManager({ languages: ['en', 'te'] });
 
 
 
+manager.addDocument('en', 'I want to sell my products', 'farmer.sell');
+manager.addDocument('te', 'నేను నా ఉత్పత్తులను అమ్మాలనుకుంటున్నాను', 'farmer.sell');
+
+manager.addDocument('en', 'I have products to sell', 'farmer.sell');
+manager.addDocument('te', 'నా దగ్గర అమ్మడానికి ఉత్పత్తులు ఉన్నాయి', 'farmer.sell');
+
+manager.addDocument('en', 'How can I sell my produce?', 'farmer.sell');
+manager.addDocument('te', 'నేను నా పంటను ఎలా అమ్మగలను?', 'farmer.sell');
+
+manager.addDocument('en', 'I want to list my products', 'farmer.sell');
+manager.addDocument('te', 'నేను నా ఉత్పత్తులను జాబితా చేయాలనుకుంటున్నాను', 'farmer.sell');
+
+manager.addDocument('en', 'I have harvest ready to sell', 'farmer.sell');
+manager.addDocument('te', 'నా దగ్గర అమ్మడానికి పంట సిద్ధంగా ఉంది', 'farmer.sell');
+
+// Quantity Intents - English & Telugu
+manager.addDocument('en', 'I have 10 tons of wheat', 'farmer.quantity');
+manager.addDocument('te', 'నా దగ్గర 10 టన్నుల గోధుమలు ఉన్నాయి', 'farmer.quantity');
+
+manager.addDocument('en', 'I have 5 tonnes of rice', 'farmer.quantity');
+manager.addDocument('te', 'నా దగ్గర 5 టన్నుల బియ్యం ఉంది', 'farmer.quantity');
+
+manager.addDocument('en', 'We harvested 20 tons of potatoes', 'farmer.quantity');
+manager.addDocument('te', 'మేము 20 టన్నుల బంగాళాదుంపలు పండించాము', 'farmer.quantity');
+
+manager.addDocument('en', 'There are 15 tons of corn available', 'farmer.quantity');
+manager.addDocument('te', 'నా దగ్గర 15 టన్నుల మొక్కజొన్న ఉంది', 'farmer.quantity');
+
+manager.addDocument('en', 'I have 1000 kg of vegetables', 'farmer.quantity');
+manager.addDocument('te', 'నా దగ్గర 1000 కేజీల కూరగాయలు ఉన్నాయి', 'farmer.quantity');
+
+// Product Type Intents - English & Telugu
+manager.addDocument('en', 'I grow organic vegetables', 'farmer.product.type');
+manager.addDocument('te', 'నేను సేంద్రియ కూరగాయలు పండిస్తాను', 'farmer.product.type');
+
+manager.addDocument('en', 'We produce wheat', 'farmer.product.type');
+manager.addDocument('te', 'మేము గోధుమలు పండిస్తాము', 'farmer.product.type');
+
+manager.addDocument('en', 'I farm rice', 'farmer.product.type');
+manager.addDocument('te', 'నేను వరి సాగు చేస్తాను', 'farmer.product.type');
+
+manager.addDocument('en', 'We harvest corn', 'farmer.product.type');
+manager.addDocument('te', 'మేము మొక్కజొన్న పండిస్తాము', 'farmer.product.type');
+
+manager.addDocument('en', 'I cultivate potatoes', 'farmer.product.type');
+manager.addDocument('te', 'నేను బంగాళాదుంపలు పండిస్తాను', 'farmer.product.type');
+
+// Add Responses - English & Telugu
+manager.addAnswer('en', 'farmer.sell', 'I\'ll help you list your products. Please tell me what type of produce you have and the quantity.');
+manager.addAnswer('te', 'farmer.sell', 'మీ ఉత్పత్తులను జాబితా చేయడానికి నేను సహాయం చేస్తాను. దయచేసి మీరు ఏ రకమైన పంట మరియు ఎంత పరిమాణం ఉందో చెప్పండి.');
+
+manager.addAnswer('en', 'farmer.quantity', 'I\'ll redirect you to our product listing page where you can enter the exact quantity and set your price. Click here: [PRODUCT_LISTING_URL]');
+manager.addAnswer('te', 'farmer.quantity', 'మీరు ఖచ్చితమైన పరిమాణాన్ని మరియు ధరను నమోదు చేయగల మా ఉత్పత్తి జాబితా పేజీకి మిమ్మల్ని మళ్లిస్తాను. ఇక్కడ క్లిక్ చేయండి: [PRODUCT_LISTING_URL]');
+
+manager.addAnswer('en', 'farmer.product.type', 'Excellent! Please specify the quantity you have available.');
+manager.addAnswer('te', 'farmer.product.type', 'చాలా బాగుంది! దయచేసి మీ దగ్గర ఉన్న పరిమాణాన్ని తెలియజేయండి.');
+
+// Entity Recognition - Telugu Products
+manager.addNamedEntityText('product', 'grain', ['te'], ['గోధుమలు', 'బియ్యం', 'మొక్కజొన్న', 'వరి']);
+manager.addNamedEntityText('product', 'vegetable', ['te'], ['బంగాళాదుంపలు', 'టమాటాలు', 'ఉల్లిపాయలు', 'కారెట్లు']);
+manager.addNamedEntityText('unit', 'weight', ['te'], ['టన్ను', 'టన్నులు', 'కేజీ', 'కిలోలు', 'కిలోగ్రాములు']);
+
+// Composite Patterns - Telugu
+manager.addDocument('te', 'నా దగ్గర %product% అమ్మడానికి ఉంది', 'farmer.product.type');
+manager.addDocument('te', 'నేను %product% అమ్మాలనుకుంటున్నాను', 'farmer.product.type');
+manager.addDocument('te', 'నా దగ్గర %number% %unit% %product% ఉంది', 'farmer.quantity');
+
+
+
 
 
 // Name-related intents
